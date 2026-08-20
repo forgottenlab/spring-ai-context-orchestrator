@@ -11,6 +11,7 @@
 - [x] Establish ContextExecutor with timeout, concurrent loading, partial-failure isolation, and deterministic result ordering.
 - [x] Establish tokenizer-neutral Context Budget policy and deterministic priority-based selection.
 - [x] Establish structured Context Assembly without coupling core to Spring AI Message types.
+- [x] Establish Spring AI Advisor bridge for call/stream context orchestration and prompt augmentation.
 - [x] Establish context arbitration identity and baseline authority/freshness conflict resolution.
 - [ ] Extend arbitration with relevance/cost only if later stages demonstrate a real need.
 - [ ] Decide YAML schema.
