@@ -8,6 +8,7 @@
 - [x] Establish safe project boundaries.
 - [x] Add unit tests for core invariants.
 - [x] Design ContextSource loading strategies: ALWAYS / RELEVANT / ON_DEMAND / CUSTOM.
+- [x] Establish ContextExecutor with timeout, concurrent loading, partial-failure isolation, and deterministic result ordering.
 - [ ] Design Context Budget policy without coupling core to a tokenizer implementation.
 - [ ] Design context arbitration rules for authority, freshness, relevance, and cost.
 - [ ] Decide YAML schema.

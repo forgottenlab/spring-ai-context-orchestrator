@@ -20,6 +20,13 @@ public interface ContextSource {
     }
 
     /**
+     * Defines execution constraints for this source.
+     */
+    default ContextExecutionPolicy executionPolicy() {
+        return ContextExecutionPolicy.defaults();
+    }
+
+    /**
      * Technical eligibility guard. Returning false always causes the planner
      * to skip the source for the current request.
      */
