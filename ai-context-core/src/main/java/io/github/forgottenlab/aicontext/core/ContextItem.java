@@ -8,8 +8,9 @@ import java.util.Objects;
 /**
  * One typed contribution to the model context.
  *
- * @param name logical item name
+ * @param name human-readable logical item name
  * @param value typed value; rendering is intentionally deferred
+ * @param key optional structured identity for conflict arbitration
  * @param priority budget priority
  * @param authority conflict-resolution authority
  * @param observedAt when the value was observed or loaded
@@ -20,12 +21,38 @@ import java.util.Objects;
 public record ContextItem<T>(
         String name,
         T value,
+        ContextKey key,
         ContextPriority priority,
         ContextAuthority authority,
         Instant observedAt,
         Duration maxAge,
         Map<String, Object> metadata
 ) {
+
+    /**
+     * Convenience constructor for context that does not participate in
+     * key-based fact arbitration.
+     */
+    public ContextItem(
+            String name,
+            T value,
+            ContextPriority priority,
+            ContextAuthority authority,
+            Instant observedAt,
+            Duration maxAge,
+            Map<String, Object> metadata
+    ) {
+        this(
+                name,
+                value,
+                null,
+                priority,
+                authority,
+                observedAt,
+                maxAge,
+                metadata
+        );
+    }
 
     public ContextItem {
         Objects.requireNonNull(name, "name must not be null");

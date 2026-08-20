@@ -10,7 +10,8 @@
 - [x] Design ContextSource loading strategies: ALWAYS / RELEVANT / ON_DEMAND / CUSTOM.
 - [x] Establish ContextExecutor with timeout, concurrent loading, partial-failure isolation, and deterministic result ordering.
 - [ ] Design Context Budget policy without coupling core to a tokenizer implementation.
-- [ ] Design context arbitration rules for authority, freshness, relevance, and cost.
+- [x] Establish context arbitration identity and baseline authority/freshness conflict resolution.
+- [ ] Extend arbitration with relevance/cost only if later stages demonstrate a real need.
 - [ ] Decide YAML schema.
 - [ ] Decide annotation API.
 - [ ] Implement the first end-to-end quickstart.
