@@ -12,4 +12,12 @@
 
     <artifactId>ai-context-core</artifactId>
     <name>AI Context Orchestrator :: Core</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
