@@ -82,8 +82,8 @@ Spring AI ChatClient
 
 详细说明：
 
-- [架构说明](docs/ARCHITECTURE.zh-CN.md)
-- [类职责地图](docs/CLASS_MAP.zh-CN.md)
+- [架构说明](docs/architecture/ARCHITECTURE.zh-CN.md)
+- [类职责地图](docs/architecture/CLASS_MAP.zh-CN.md)
 
 ---
 
@@ -189,7 +189,7 @@ mvn test
 
 详细说明：
 
-- [测试说明](docs/TESTING.zh-CN.md)
+- [测试说明](docs/project/TESTING.zh-CN.md)
 
 ---
 
@@ -197,12 +197,12 @@ mvn test
 
 | 文档 | 中文 | English |
 |---|---|---|
-| 架构说明 | [ARCHITECTURE.zh-CN.md](docs/ARCHITECTURE.zh-CN.md) | [ARCHITECTURE.md](docs/ARCHITECTURE.md) |
-| 类职责地图 | [CLASS_MAP.zh-CN.md](docs/CLASS_MAP.zh-CN.md) | [CLASS_MAP.md](docs/CLASS_MAP.md) |
-| 快速开始 | [GETTING_STARTED.zh-CN.md](docs/GETTING_STARTED.zh-CN.md) | [GETTING_STARTED.md](docs/GETTING_STARTED.md) |
-| 测试说明 | [TESTING.zh-CN.md](docs/TESTING.zh-CN.md) | [TESTING.md](docs/TESTING.md) |
-| 路线图 | [ROADMAP.zh-CN.md](docs/ROADMAP.zh-CN.md) | [ROADMAP.md](docs/ROADMAP.md) |
-| 安全说明 | [SAFETY.zh-CN.md](docs/SAFETY.zh-CN.md) | [SAFETY.md](docs/SAFETY.md) |
+| 架构说明 | [ARCHITECTURE.zh-CN.md](docs/architecture/ARCHITECTURE.zh-CN.md) | [ARCHITECTURE.md](docs/architecture/ARCHITECTURE.md) |
+| 类职责地图 | [CLASS_MAP.zh-CN.md](docs/architecture/CLASS_MAP.zh-CN.md) | [CLASS_MAP.md](docs/architecture/CLASS_MAP.md) |
+| 快速开始 | [GETTING_STARTED.zh-CN.md](docs/guides/GETTING_STARTED.zh-CN.md) | [GETTING_STARTED.md](docs/guides/GETTING_STARTED.md) |
+| 测试说明 | [TESTING.zh-CN.md](docs/project/TESTING.zh-CN.md) | [TESTING.md](docs/project/TESTING.md) |
+| 路线图 | [ROADMAP.zh-CN.md](docs/project/ROADMAP.zh-CN.md) | [ROADMAP.md](docs/project/ROADMAP.md) |
+| 安全说明 | [SAFETY.zh-CN.md](docs/project/SAFETY.zh-CN.md) | [SAFETY.md](docs/project/SAFETY.md) |
 
 ---
 
@@ -218,7 +218,7 @@ ACO 会接触业务上下文，因此使用时应特别注意：
 
 详细说明见：
 
-- [安全说明](docs/SAFETY.zh-CN.md)
+- [安全说明](docs/project/SAFETY.zh-CN.md)
 
 ---
 
@@ -242,7 +242,7 @@ Fake ChatModel
 
 详细路线：
 
-- [路线图](docs/ROADMAP.zh-CN.md)
+- [路线图](docs/project/ROADMAP.zh-CN.md)
 
 ---
 

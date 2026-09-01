@@ -45,9 +45,9 @@ Spring AI Alibaba support will be introduced behind a dedicated adapter/compatib
 
 ## 📖 Documentation
 
-- [Architecture](docs/ARCHITECTURE.md) | [架构说明](docs/ARCHITECTURE.zh-CN.md)
-- [Class Map](docs/CLASS_MAP.md) | [类职责地图](docs/CLASS_MAP.zh-CN.md)
-- [Getting Started](docs/GETTING_STARTED.md) | [快速开始](docs/GETTING_STARTED.zh-CN.md)
-- [Testing](docs/TESTING.md) | [测试说明](docs/TESTING.zh-CN.md)
-- [Roadmap](docs/ROADMAP.md) | [路线图](docs/ROADMAP.zh-CN.md)
-- [Safety Notes](docs/SAFETY.md) | [安全说明](docs/SAFETY.zh-CN.md)
+- [Architecture](docs/architecture/ARCHITECTURE.md) | [架构说明](docs/architecture/ARCHITECTURE.zh-CN.md)
+- [Class Map](docs/architecture/CLASS_MAP.md) | [类职责地图](docs/architecture/CLASS_MAP.zh-CN.md)
+- [Getting Started](docs/guides/GETTING_STARTED.md) | [快速开始](docs/guides/GETTING_STARTED.zh-CN.md)
+- [Testing](docs/project/TESTING.md) | [测试说明](docs/project/TESTING.zh-CN.md)
+- [Roadmap](docs/project/ROADMAP.md) | [路线图](docs/project/ROADMAP.zh-CN.md)
+- [Safety Notes](docs/project/SAFETY.md) | [安全说明](docs/project/SAFETY.zh-CN.md)

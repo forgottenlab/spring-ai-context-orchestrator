@@ -4,9 +4,9 @@
 
 | Document | English | 简体中文 |
 |---|---|---|
-| Architecture | [ARCHITECTURE.md](ARCHITECTURE.md) | [ARCHITECTURE.zh-CN.md](ARCHITECTURE.zh-CN.md) |
-| Class Map | [CLASS_MAP.md](CLASS_MAP.md) | [CLASS_MAP.zh-CN.md](CLASS_MAP.zh-CN.md) |
-| Getting Started | [GETTING_STARTED.md](GETTING_STARTED.md) | [GETTING_STARTED.zh-CN.md](GETTING_STARTED.zh-CN.md) |
-| Testing | [TESTING.md](TESTING.md) | [TESTING.zh-CN.md](TESTING.zh-CN.md) |
-| Roadmap | [ROADMAP.md](ROADMAP.md) | [ROADMAP.zh-CN.md](ROADMAP.zh-CN.md) |
-| Safety Notes | [SAFETY.md](SAFETY.md) | [SAFETY.zh-CN.md](SAFETY.zh-CN.md) |
+| Architecture | [ARCHITECTURE.md](architecture/ARCHITECTURE.md) | [ARCHITECTURE.zh-CN.md](architecture/ARCHITECTURE.zh-CN.md) |
+| Class Map | [CLASS_MAP.md](architecture/CLASS_MAP.md) | [CLASS_MAP.zh-CN.md](architecture/CLASS_MAP.zh-CN.md) |
+| Getting Started | [GETTING_STARTED.md](guides/GETTING_STARTED.md) | [GETTING_STARTED.zh-CN.md](guides/GETTING_STARTED.zh-CN.md) |
+| Testing | [TESTING.md](project/TESTING.md) | [TESTING.zh-CN.md](project/TESTING.zh-CN.md) |
+| Roadmap | [ROADMAP.md](project/ROADMAP.md) | [ROADMAP.zh-CN.md](project/ROADMAP.zh-CN.md) |
+| Safety Notes | [SAFETY.md](project/SAFETY.md) | [SAFETY.zh-CN.md](project/SAFETY.zh-CN.md) |
