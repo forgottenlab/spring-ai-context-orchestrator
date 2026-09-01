@@ -2,6 +2,15 @@ package io.github.forgottenlab.aicontext.autoconfigure;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * Public Spring Boot configuration properties for AI Context Orchestrator.
+ * AI Context Orchestrator 对外公开的 Spring Boot 配置属性。
+ *
+ * <p>
+ * Property names are part of the consumer-facing compatibility surface and should change cautiously.
+ * 配置项名称属于面向使用者的兼容性接口，修改时应保持谨慎。
+ * </p>
+ */
 @ConfigurationProperties("forgottenlab.ai.context")
 public class AiContextProperties {
 
