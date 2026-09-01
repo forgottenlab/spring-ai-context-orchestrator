@@ -1,5 +1,7 @@
 # AI Context Orchestrator
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 > Working name. The public project name and artifact coordinates can be renamed before the first release.
 
 AI Context Orchestrator is a thin, declarative business-context orchestration layer for Spring AI applications.
@@ -40,3 +42,12 @@ The project deliberately does **not** replace Spring AI, Spring Data, MyBatis, R
 - Maven
 
 Spring AI Alibaba support will be introduced behind a dedicated adapter/compatibility layer rather than forcing its Spring AI version onto the core dependency graph.
+
+## 📖 Documentation
+
+- [Architecture](docs/ARCHITECTURE.md) | [架构说明](docs/ARCHITECTURE.zh-CN.md)
+- [Class Map](docs/CLASS_MAP.md) | [类职责地图](docs/CLASS_MAP.zh-CN.md)
+- [Getting Started](docs/GETTING_STARTED.md) | [快速开始](docs/GETTING_STARTED.zh-CN.md)
+- [Testing](docs/TESTING.md) | [测试说明](docs/TESTING.zh-CN.md)
+- [Roadmap](docs/ROADMAP.md) | [路线图](docs/ROADMAP.zh-CN.md)
+- [Safety Notes](docs/SAFETY.md) | [安全说明](docs/SAFETY.zh-CN.md)
