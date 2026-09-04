@@ -15,8 +15,8 @@ The foundation and consumer wiring baseline are established:
   default orchestration graph;
 - the dependency-only Starter module exists;
 - bilingual documentation indexes and purpose-based docs directories exist;
-- the first P1 JavaDoc batch documents the six Core pipeline SPI boundaries in
-  English and Simplified Chinese.
+- the first two P1 JavaDoc batches document the six Core pipeline SPI
+  boundaries and six central domain concepts in English and Simplified Chinese.
 
 The Starter consumer experience is not yet verified end to end. Existing
 AutoConfiguration tests invoke the Advisor boundary directly; they do not yet
