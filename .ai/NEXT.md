@@ -19,10 +19,12 @@ The foundation and consumer wiring baseline are established:
   six central domain concepts, and six pipeline data/result lifecycles in
   English and Simplified Chinese.
 
-The Starter consumer experience is not yet verified end to end. Existing
-AutoConfiguration tests invoke the Advisor boundary directly; they do not yet
-prove an auto-configured `ChatClient.Builder` call reaching a Fake/Stub
-`ChatModel` with the final enriched Prompt.
+The Starter consumer E2E is verified GREEN. A consumer obtains the
+auto-configured `ChatClient.Builder` through the Starter, ACO's Advisor is
+applied automatically, the original system message is preserved, and the
+consumer `ContextSource` fact reaches the final Prompt inside one
+`<business-context>` envelope. The test uses a Fake `ChatModel` with no API key,
+external model provider, or model network call.
 
 The runnable Quickstart is also not implemented; `examples/quickstart` remains
 a placeholder.
@@ -35,8 +37,7 @@ Complete one task at a time and stop after each task:
    types without changing behavior.
 2. Synchronize English and Chinese documentation with verified repository
    behavior and remove stale consumer-status wording.
-3. Add a Starter consumer E2E using a Fake/Stub `ChatModel`, no API key, no
-   external network, and an auto-configured `ChatClient.Builder`.
+3. Keep the verified Starter consumer E2E as the executable consumer contract.
 4. Build a runnable Quickstart only after the Starter consumer contract is
    proven.
 
