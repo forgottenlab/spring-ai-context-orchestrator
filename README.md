@@ -51,3 +51,7 @@ Spring AI Alibaba support will be introduced behind a dedicated adapter/compatib
 - [Testing](docs/project/TESTING.md) | [测试说明](docs/project/TESTING.zh-CN.md)
 - [Roadmap](docs/project/ROADMAP.md) | [路线图](docs/project/ROADMAP.zh-CN.md)
 - [Safety Notes](docs/project/SAFETY.md) | [安全说明](docs/project/SAFETY.zh-CN.md)
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).

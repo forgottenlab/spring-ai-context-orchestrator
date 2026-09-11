@@ -248,4 +248,4 @@ Fake ChatModel
 
 ## 📜 许可证
 
-许可证信息以仓库中的 `LICENSE` 文件为准。
+本项目采用 [Apache License 2.0](LICENSE) 许可证。
