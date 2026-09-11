@@ -18,6 +18,30 @@
 
     <name>AI Context Orchestrator</name>
     <description>Declarative business-context orchestration for Spring AI applications.</description>
+    <url/>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>forgottenlab</name>
+            <organization>ForgottenLab</organization>
+        </developer>
+    </developers>
+
+    <!-- Override inherited Spring Boot SCM identity until a canonical remote exists. -->
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <url/>
+        <tag/>
+    </scm>
 
     <properties>
         <java.version>17</java.version>
@@ -42,4 +66,33 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>include-project-license</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}/META-INF</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/..</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>LICENSE</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
