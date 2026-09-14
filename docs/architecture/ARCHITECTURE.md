@@ -45,8 +45,24 @@ Spring AI ChatClient
 | `ai-context-core` | Provider-neutral domain and SPI |
 | `ai-context-spring-ai` | Spring AI Advisor bridge |
 | `ai-context-spring-boot-autoconfigure` | Spring Boot default wiring |
-| `ai-context-spring-boot-starter` | Consumer dependency aggregation |
-| `examples` | Runnable consumer examples |
+| `ai-context-spring-boot-starter` | Consumer dependency aggregation and verified `ChatClient.Builder` path |
+| `examples` | Planned consumer examples; the current directories are placeholders |
+
+## 📦 Core Package Structure
+
+`ai-context-core` remains a single Maven module. Shared domain contracts stay
+in the root package, while stage-specific types follow the runtime pipeline:
+
+```text
+io.github.forgottenlab.aicontext.core
+├─ planning
+├─ execution
+├─ resolution
+├─ budget
+└─ assembly
+```
+
+These are Java package boundaries, not separate Maven modules.
 
 ## ⚖️ Authority vs Priority
 

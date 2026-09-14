@@ -9,7 +9,13 @@
 | Core | 89 |
 | Spring AI | 18 |
 | Spring Boot AutoConfigure | 10 |
-| Total | 117 |
+| Spring Boot Starter | 1 |
+| Total | 118 |
+
+The Starter test is a Spring Boot consumer E2E using a fake `ChatModel`. It
+verifies the auto-configured `ChatClient.Builder`, automatically registered ACO
+Advisor, preserved system message, and appended business context without an API
+key or network call.
 
 Run:
 

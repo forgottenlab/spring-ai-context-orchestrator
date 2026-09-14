@@ -1,6 +1,7 @@
-# Advanced context example
+# Advanced context example (planned)
 
-Reserved for the extensible example demonstrating:
+This directory is currently a placeholder and is not yet runnable. It is
+reserved for an extensible example demonstrating:
 
 - multiple ContextSource implementations;
 - database ground truth;

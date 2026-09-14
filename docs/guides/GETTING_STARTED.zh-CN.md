@@ -61,11 +61,12 @@ Assembler
 
 这些属于 ACO 内部流水线。
 
-## 🟡 当前状态
+## ✅ 当前状态
 
-AutoConfiguration 基线已经完成。
+AutoConfiguration 与 Starter 消费者链路已经完成验证。
 
-下一阶段会增加一个不需要 API Key 的 Fake ChatModel E2E，用来真正证明：
+`StarterConsumerE2ETest` 使用不需要 API Key、不会访问网络的 Fake
+`ChatModel`，已经证明：
 
 ```text
 Starter
@@ -79,4 +80,8 @@ Advisor
 最终 Prompt
 ```
 
-整条链路可工作。
+整条链路可工作，并验证原 system message 得以保留、
+`<business-context>` 与 `ContextSource` 事实进入最终 Prompt。
+
+`examples/quickstart` 当前仍是占位目录；下一阶段会把已验证契约整理为
+真正可运行的示例。

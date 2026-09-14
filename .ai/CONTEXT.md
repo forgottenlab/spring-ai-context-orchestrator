@@ -26,7 +26,10 @@ bridges the result into Spring AI.
 ## Module boundaries
 
 - `ai-context-core` contains the provider-neutral domain model and extension
-  SPI. It does not depend on Spring AI.
+  SPI. It does not depend on Spring AI. Shared contracts stay in
+  `io.github.forgottenlab.aicontext.core`; stage-specific types are organized
+  under `planning`, `execution`, `resolution`, `budget`, and `assembly` within
+  the same Maven module.
 - `ai-context-spring-ai` adapts Spring AI requests, runs the orchestration
   pipeline through an Advisor, preserves existing system instructions, and
   appends rendered business context.
@@ -76,6 +79,11 @@ Authority and Priority are separate concepts and must remain separate.
 Normal Spring Boot consumers should depend on the Starter and contribute
 application-specific `ContextSource` beans. Consumers should not need to
 manually assemble Planner, Executor, Resolver, Budgeter, or Assembler.
+
+This contract is verified by a fake-model consumer E2E: the Starter provides
+the auto-configured `ChatClient.Builder`, applies ACO's Advisor automatically,
+preserves the existing system message, and appends the consumer source's facts
+inside `<business-context>` without an API key or external model call.
 
 Persistence, cache, vector-store, memory, authorization, and model-provider
 infrastructure remain application or provider responsibilities.

@@ -51,8 +51,24 @@ Spring AI ChatClient
 | `ai-context-core` | 与具体 AI 框架无关的领域模型与 SPI |
 | `ai-context-spring-ai` | Spring AI Advisor 桥接 |
 | `ai-context-spring-boot-autoconfigure` | Spring Boot 默认 Bean 装配 |
-| `ai-context-spring-boot-starter` | 给使用者提供单一依赖入口 |
-| `examples` | 可运行的消费者示例 |
+| `ai-context-spring-boot-starter` | 给使用者提供单一依赖入口，并已验证 `ChatClient.Builder` 消费者链路 |
+| `examples` | 计划中的消费者示例；当前目录仍是占位内容 |
+
+## 📦 Core Package 结构
+
+`ai-context-core` 仍是一个 Maven module。跨阶段共享的领域契约保留在根
+package，各阶段专属类型则按运行时流水线分类：
+
+```text
+io.github.forgottenlab.aicontext.core
+├─ planning
+├─ execution
+├─ resolution
+├─ budget
+└─ assembly
+```
+
+这些是 Java package 边界，不是独立 Maven module。
 
 ## 🧠 为什么会有很多小类
 

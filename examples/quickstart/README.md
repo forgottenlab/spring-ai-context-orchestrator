@@ -1,11 +1,13 @@
-# Quickstart example
+# Quickstart example (planned)
 
-Reserved for the configuration-first example.
+This directory is currently a placeholder and is not yet runnable.
 
 Target experience:
 
 1. add the framework starter;
-2. add one Spring AI model starter;
-3. configure the API key;
-4. declare a basic assistant and one optional context source;
-5. run.
+2. define one application `ContextSource`;
+3. inject the auto-configured `ChatClient.Builder`;
+4. run the same consumer path already verified by the Starter fake-model E2E.
+
+The repository test baseline requires no API key or network access. A future
+real-provider variant may document provider-specific credentials separately.

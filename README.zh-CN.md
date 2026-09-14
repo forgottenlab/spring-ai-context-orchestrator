@@ -53,8 +53,8 @@ Spring AI Advisor 自动注入模型请求
 | Structured Assembly | ✅ 已完成 | 保持结构化到模型边界 |
 | Spring AI Advisor Bridge | ✅ 已完成 | 自动追加业务上下文 |
 | Spring Boot AutoConfiguration | ✅ 已完成 | 自动构建默认运行图 |
-| Spring Boot Starter | 🟡 基线已建立 | 下一步完成真正的消费者 E2E |
-| Runnable Quickstart | 🟡 进行中 | 使用 Fake ChatModel 验证完整链路 |
+| Spring Boot Starter | ✅ 消费者链路已验证 | Fake ChatModel E2E 已覆盖自动装配与最终 Prompt |
+| Runnable Quickstart | 🟡 计划中 | `examples/quickstart` 当前仍是占位目录 |
 
 ---
 
@@ -79,6 +79,10 @@ ContextOrchestrationAdvisor
    ↓
 Spring AI ChatClient
 ```
+
+`ai-context-core` 仍是单一 Maven module：跨阶段共享契约保留在
+`io.github.forgottenlab.aicontext.core`，阶段专属类型分别位于
+`planning`、`execution`、`resolution`、`budget` 与 `assembly` package。
 
 详细说明：
 
@@ -179,7 +183,8 @@ forgottenlab:
 | Core | 89 | ✅ |
 | Spring AI | 18 | ✅ |
 | Spring Boot AutoConfigure | 10 | ✅ |
-| 合计 | 117 | ✅ |
+| Spring Boot Starter | 1 | ✅ |
+| 合计 | 118 | ✅ |
 
 运行：
 
@@ -224,7 +229,7 @@ ACO 会接触业务上下文，因此使用时应特别注意：
 
 ## 🗺️ 路线图
 
-下一阶段重点不是继续扩张 Core，而是验证 Starter 的真实消费者体验：
+Starter 的真实消费者体验已经由 Fake ChatModel E2E 验证：
 
 ```text
 Starter dependency
@@ -239,6 +244,9 @@ Fake ChatModel
     ↓
 最终 Prompt 中出现 <business-context>
 ```
+
+下一阶段是把这条已验证链路整理为可直接运行的 Quickstart，再进行真实应用
+dogfooding；这些仍是 Roadmap，不代表示例已经完成。
 
 详细路线：
 

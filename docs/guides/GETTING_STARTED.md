@@ -31,4 +31,9 @@ ProductAssistant(ChatClient.Builder builder) {
 
 ACO is intended to auto-register its advisor with the auto-configured builder.
 
-The runnable fake-model E2E quickstart is the next milestone.
+This consumer path is verified by `StarterConsumerE2ETest`: a fake
+`ChatModel` receives the final Prompt, including the preserved system message
+and appended `<business-context>`, without an API key or network call.
+
+The `examples/quickstart` directory is still a placeholder. Turning this
+verified contract into a runnable example is the next milestone.

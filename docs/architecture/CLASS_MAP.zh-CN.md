@@ -25,6 +25,20 @@
 14. AiContextAutoConfiguration
 ```
 
+## 📦 Package 地图
+
+| Package | 主要职责 |
+|---|---|
+| `io.github.forgottenlab.aicontext.core` | 跨阶段共享领域契约与消费者扩展点 `ContextSource` |
+| `.core.planning` | 加载决策与计划 |
+| `.core.execution` | Source 加载、并发、超时与失败隔离 |
+| `.core.resolution` | 冲突、Authority 与 Freshness 仲裁 |
+| `.core.budget` | Required 保护与基于 Priority 的预算选择 |
+| `.core.assembly` | 模型侧结构化上下文组装与延迟渲染 |
+
+这些 package 体现 pipeline 职责边界，但仍共同属于一个 `ai-context-core`
+Maven module。
+
 ## 🧩 核心类型职责
 
 | 类型 | 负责什么 | 不负责什么 |

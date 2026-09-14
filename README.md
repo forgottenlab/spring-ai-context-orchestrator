@@ -25,14 +25,28 @@ The project deliberately does **not** replace Spring AI, Spring Data, MyBatis, R
 9. Spring AI Alibaba is an optional enhancement, not a hard dependency of the core.
 10. No automatic write-capable SQL from LLM output.
 
-## Initial modules
+## Modules
 
 - `ai-context-core`: provider-neutral context model and extension SPI.
 - `ai-context-spring-ai`: Spring AI bridge.
 - `ai-context-spring-boot-autoconfigure`: Boot auto-configuration and properties.
-- `ai-context-spring-boot-starter`: user-facing dependency aggregator.
-- `examples/quickstart`: reserved for the minimal example.
-- `examples/advanced-context`: reserved for the extensible example.
+- `ai-context-spring-boot-starter`: user-facing dependency aggregator with the
+  verified Spring AI `ChatClient.Builder` consumer path.
+- `examples/quickstart`: placeholder for the planned runnable minimal example.
+- `examples/advanced-context`: placeholder for the planned extensible example.
+
+The Core module remains one Maven module, with shared contracts in
+`io.github.forgottenlab.aicontext.core` and pipeline-specific types organized
+under `planning`, `execution`, `resolution`, `budget`, and `assembly`.
+
+## ✅ Current status
+
+The Starter consumer contract is covered by a fake-model Spring Boot E2E test.
+A normal consumer can depend on the Starter, contribute a `ContextSource`,
+inject the auto-configured `ChatClient.Builder`, and receive ACO business
+context in the final Prompt without an API key or external model call.
+
+The runnable Quickstart has not been implemented yet.
 
 ## Baseline
 
@@ -42,6 +56,26 @@ The project deliberately does **not** replace Spring AI, Spring Data, MyBatis, R
 - Maven
 
 Spring AI Alibaba support will be introduced behind a dedicated adapter/compatibility layer rather than forcing its Spring AI version onto the core dependency graph.
+
+## 🧪 Testing
+
+| Module | Tests |
+|---|---:|
+| Core | 89 |
+| Spring AI | 18 |
+| Spring Boot AutoConfigure | 10 |
+| Spring Boot Starter | 1 |
+| Total | 118 |
+
+Run the complete local reactor with:
+
+```powershell
+mvn test
+```
+
+The next consumer-facing milestone is the runnable Quickstart, followed by
+real-application dogfooding. These roadmap items are not claims of current
+implementation.
 
 ## 📖 Documentation
 

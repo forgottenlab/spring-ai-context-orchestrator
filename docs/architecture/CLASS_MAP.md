@@ -21,6 +21,17 @@ ContextOrchestrationAdvisor
 AiContextAutoConfiguration
 ```
 
+## 📦 Package Map
+
+| Package | Main responsibility |
+|---|---|
+| `io.github.forgottenlab.aicontext.core` | Shared domain contracts and the consumer-facing `ContextSource` SPI |
+| `.core.planning` | Load decisions and plans |
+| `.core.execution` | Source loading, concurrency, timeout, and failure isolation |
+| `.core.resolution` | Conflict, Authority, and Freshness resolution |
+| `.core.budget` | Required protection and Priority-based budget selection |
+| `.core.assembly` | Structured model-facing context assembly and late value rendering |
+
 ## 🧩 Main Types
 
 | Type | Responsibility |
@@ -36,3 +47,5 @@ AiContextAutoConfiguration
 | `AiContextAutoConfiguration` | Build the default Spring Boot graph |
 
 Start with this path instead of reading every type under `ai-context-core`.
+The package hierarchy expresses pipeline ownership without splitting Core into
+multiple Maven modules.
