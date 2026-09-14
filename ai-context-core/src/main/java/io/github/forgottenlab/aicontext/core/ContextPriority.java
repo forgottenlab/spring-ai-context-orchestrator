@@ -1,5 +1,7 @@
 package io.github.forgottenlab.aicontext.core;
 
+import io.github.forgottenlab.aicontext.core.budget.ContextBudgeter;
+
 /**
  * Business importance used by a {@link ContextBudgeter} when model-context
  * budget is limited.

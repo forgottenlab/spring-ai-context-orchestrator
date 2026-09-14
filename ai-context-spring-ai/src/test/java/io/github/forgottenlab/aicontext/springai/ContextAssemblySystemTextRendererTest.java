@@ -1,8 +1,8 @@
 package io.github.forgottenlab.aicontext.springai;
 
-import io.github.forgottenlab.aicontext.core.ContextAssembly;
+import io.github.forgottenlab.aicontext.core.assembly.ContextAssembly;
 import io.github.forgottenlab.aicontext.core.ContextAuthority;
-import io.github.forgottenlab.aicontext.core.ContextBlock;
+import io.github.forgottenlab.aicontext.core.assembly.ContextBlock;
 import io.github.forgottenlab.aicontext.core.ContextKey;
 import io.github.forgottenlab.aicontext.core.ContextPriority;
 import org.junit.jupiter.api.Test;

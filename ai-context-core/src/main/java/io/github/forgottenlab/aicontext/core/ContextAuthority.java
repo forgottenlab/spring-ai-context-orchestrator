@@ -1,5 +1,7 @@
 package io.github.forgottenlab.aicontext.core;
 
+import io.github.forgottenlab.aicontext.core.resolution.ContextResolver;
+
 /**
  * Trust level used by a {@link ContextResolver} when conflicting facts compete.
  * 多个事实发生冲突时，由 {@link ContextResolver} 用于仲裁的可信等级。

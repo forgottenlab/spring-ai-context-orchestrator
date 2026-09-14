@@ -1,27 +1,27 @@
 package io.github.forgottenlab.aicontext.springai;
 
-import io.github.forgottenlab.aicontext.core.ContextAssembler;
+import io.github.forgottenlab.aicontext.core.assembly.ContextAssembler;
 import io.github.forgottenlab.aicontext.core.ContextAuthority;
-import io.github.forgottenlab.aicontext.core.ContextBudgetPolicy;
-import io.github.forgottenlab.aicontext.core.ContextBudgeter;
+import io.github.forgottenlab.aicontext.core.budget.ContextBudgetPolicy;
+import io.github.forgottenlab.aicontext.core.budget.ContextBudgeter;
 import io.github.forgottenlab.aicontext.core.ContextContribution;
-import io.github.forgottenlab.aicontext.core.ContextExecutionFailureKind;
-import io.github.forgottenlab.aicontext.core.ContextExecutionReport;
-import io.github.forgottenlab.aicontext.core.ContextExecutor;
+import io.github.forgottenlab.aicontext.core.execution.ContextExecutionFailureKind;
+import io.github.forgottenlab.aicontext.core.execution.ContextExecutionReport;
+import io.github.forgottenlab.aicontext.core.execution.ContextExecutor;
 import io.github.forgottenlab.aicontext.core.ContextItem;
 import io.github.forgottenlab.aicontext.core.ContextKey;
-import io.github.forgottenlab.aicontext.core.ContextPlanner;
+import io.github.forgottenlab.aicontext.core.planning.ContextPlanner;
 import io.github.forgottenlab.aicontext.core.ContextPriority;
 import io.github.forgottenlab.aicontext.core.ContextRegistry;
-import io.github.forgottenlab.aicontext.core.ContextResolver;
+import io.github.forgottenlab.aicontext.core.resolution.ContextResolver;
 import io.github.forgottenlab.aicontext.core.ContextSource;
-import io.github.forgottenlab.aicontext.core.DefaultContextAssembler;
-import io.github.forgottenlab.aicontext.core.DefaultContextBudgeter;
-import io.github.forgottenlab.aicontext.core.DefaultContextExecutor;
-import io.github.forgottenlab.aicontext.core.DefaultContextPlanner;
-import io.github.forgottenlab.aicontext.core.DefaultContextResolver;
-import io.github.forgottenlab.aicontext.core.DefaultContextValueRenderer;
-import io.github.forgottenlab.aicontext.core.RequiredContextBudgetExceededException;
+import io.github.forgottenlab.aicontext.core.assembly.DefaultContextAssembler;
+import io.github.forgottenlab.aicontext.core.budget.DefaultContextBudgeter;
+import io.github.forgottenlab.aicontext.core.execution.DefaultContextExecutor;
+import io.github.forgottenlab.aicontext.core.planning.DefaultContextPlanner;
+import io.github.forgottenlab.aicontext.core.resolution.DefaultContextResolver;
+import io.github.forgottenlab.aicontext.core.assembly.DefaultContextValueRenderer;
+import io.github.forgottenlab.aicontext.core.budget.RequiredContextBudgetExceededException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.client.ChatClientRequest;
@@ -353,7 +353,7 @@ class ContextOrchestrationAdvisorTest {
     private ContextOrchestrationAdvisor advisor(
             List<ContextSource> sources,
             long maxCost,
-            io.github.forgottenlab.aicontext.core.ContextCostEstimator estimator
+            io.github.forgottenlab.aicontext.core.budget.ContextCostEstimator estimator
     ) {
         return advisor(
                 sources,
@@ -366,7 +366,7 @@ class ContextOrchestrationAdvisorTest {
     private ContextOrchestrationAdvisor advisor(
             List<ContextSource> sources,
             long maxCost,
-            io.github.forgottenlab.aicontext.core.ContextCostEstimator estimator,
+            io.github.forgottenlab.aicontext.core.budget.ContextCostEstimator estimator,
             int order
     ) {
         ContextRegistry registry =

@@ -1,5 +1,6 @@
 package io.github.forgottenlab.aicontext.core;
 
+import io.github.forgottenlab.aicontext.core.assembly.ContextBlock;
 import java.util.Objects;
 
 /**

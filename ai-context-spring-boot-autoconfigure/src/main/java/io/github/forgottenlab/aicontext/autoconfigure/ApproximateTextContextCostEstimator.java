@@ -1,8 +1,8 @@
 package io.github.forgottenlab.aicontext.autoconfigure;
 
 import io.github.forgottenlab.aicontext.core.ContextCandidate;
-import io.github.forgottenlab.aicontext.core.ContextCostEstimator;
-import io.github.forgottenlab.aicontext.core.ContextValueRenderer;
+import io.github.forgottenlab.aicontext.core.budget.ContextCostEstimator;
+import io.github.forgottenlab.aicontext.core.assembly.ContextValueRenderer;
 
 import java.util.Objects;
 
