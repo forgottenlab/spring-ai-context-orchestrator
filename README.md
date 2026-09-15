@@ -32,7 +32,8 @@ The project deliberately does **not** replace Spring AI, Spring Data, MyBatis, R
 - `ai-context-spring-boot-autoconfigure`: Boot auto-configuration and properties.
 - `ai-context-spring-boot-starter`: user-facing dependency aggregator with the
   verified Spring AI `ChatClient.Builder` consumer path.
-- `examples/quickstart`: placeholder for the planned runnable minimal example.
+- `examples/quickstart`: runnable offline consumer example using only the ACO
+  Starter as its direct production ACO dependency.
 - `examples/advanced-context`: placeholder for the planned extensible example.
 
 The Core module remains one Maven module, with shared contracts in
@@ -46,7 +47,10 @@ A normal consumer can depend on the Starter, contribute a `ContextSource`,
 inject the auto-configured `ChatClient.Builder`, and receive ACO business
 context in the final Prompt without an API key or external model call.
 
-The runnable Quickstart has not been implemented yet.
+The [runnable offline Quickstart](examples/quickstart/README.md) demonstrates the
+same consumer path as an executable non-web Spring Boot application. Its local
+`ChatModel` captures the final Prompt, so runtime needs no API key, provider, or
+network access.
 
 ## Baseline
 
@@ -65,7 +69,8 @@ Spring AI Alibaba support will be introduced behind a dedicated adapter/compatib
 | Spring AI | 18 |
 | Spring Boot AutoConfigure | 10 |
 | Spring Boot Starter | 1 |
-| Total | 118 |
+| Quickstart | 1 |
+| Total | 119 |
 
 Run the complete local reactor with:
 
@@ -73,9 +78,8 @@ Run the complete local reactor with:
 mvn test
 ```
 
-The next consumer-facing milestone is the runnable Quickstart, followed by
-real-application dogfooding. These roadmap items are not claims of current
-implementation.
+The next consumer-facing milestone is real-application dogfooding. Core remains
+frozen unless that usage exposes a concrete contract gap.
 
 ## 📖 Documentation
 

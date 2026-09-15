@@ -54,7 +54,7 @@ Spring AI Advisor 自动注入模型请求
 | Spring AI Advisor Bridge | ✅ 已完成 | 自动追加业务上下文 |
 | Spring Boot AutoConfiguration | ✅ 已完成 | 自动构建默认运行图 |
 | Spring Boot Starter | ✅ 消费者链路已验证 | Fake ChatModel E2E 已覆盖自动装配与最终 Prompt |
-| Runnable Quickstart | 🟡 计划中 | `examples/quickstart` 当前仍是占位目录 |
+| Runnable Quickstart | ✅ 已完成 | 离线可执行示例覆盖真实 Starter 消费者链路 |
 
 ---
 
@@ -184,7 +184,8 @@ forgottenlab:
 | Spring AI | 18 | ✅ |
 | Spring Boot AutoConfigure | 10 | ✅ |
 | Spring Boot Starter | 1 | ✅ |
-| 合计 | 118 | ✅ |
+| Quickstart | 1 | ✅ |
+| 合计 | 119 | ✅ |
 
 运行：
 
@@ -245,8 +246,12 @@ Fake ChatModel
 最终 Prompt 中出现 <business-context>
 ```
 
-下一阶段是把这条已验证链路整理为可直接运行的 Quickstart，再进行真实应用
-dogfooding；这些仍是 Roadmap，不代表示例已经完成。
+[离线可运行 Quickstart](examples/quickstart/README.md) 已经把这条链路实现为
+非 Web Spring Boot 应用。示例使用本地 `ChatModel` 捕获最终 Prompt，运行时
+不需要 API Key、模型供应商或网络访问。
+
+下一阶段是真实应用 dogfooding；只有实际使用暴露明确契约缺口时，才重新
+评估当前冻结的 Core。
 
 详细路线：
 

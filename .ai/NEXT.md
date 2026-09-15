@@ -21,9 +21,9 @@ The foundation and consumer wiring baseline are established:
 - Core remains one Maven module, with shared contracts in the root package and
   stage-specific types organized under `planning`, `execution`, `resolution`,
   `budget`, and `assembly`;
-- public Markdown now reflects the verified Starter consumer contract, the
-  118-test reactor baseline, the stage package structure, and the fact that the
-  Quickstart remains a placeholder.
+- public Markdown reflects the verified Starter consumer contract, the
+  119-test reactor baseline, the stage package structure, and the runnable
+  offline Quickstart.
 
 The Starter consumer E2E is verified GREEN. A consumer obtains the
 auto-configured `ChatClient.Builder` through the Starter, ACO's Advisor is
@@ -32,21 +32,23 @@ consumer `ContextSource` fact reaches the final Prompt inside one
 `<business-context>` envelope. The test uses a Fake `ChatModel` with no API key,
 external model provider, or model network call.
 
-The runnable Quickstart is not implemented; `examples/quickstart` remains
-a placeholder.
+The runnable offline Quickstart is verified GREEN. Its only direct production
+ACO dependency is the Starter; it supplies one application `ContextSource` and
+an in-memory `ChatModel`, obtains the auto-configured `ChatClient.Builder`, and
+prints the final enriched system message. The packaged non-web application
+runs once and exits without an API key, model provider, or runtime network
+access.
 
-After the package migration, `mvn clean test` is GREEN with Core 89, Spring AI
-18, AutoConfiguration 10, and Starter 1 test.
+`mvn clean test` is GREEN with Core 89, Spring AI 18, AutoConfiguration 10,
+Starter 1, and Quickstart 1 test (119 total).
 
 ## Ordered next tasks
 
 Complete one task at a time and stop after each task:
 
-1. Build a runnable Quickstart from the verified Starter consumer contract,
-   without introducing a real API key or model network dependency into tests.
-2. Dogfood the Starter in a real application and record concrete consumer
+1. Dogfood the Starter in a real application and record concrete consumer
    friction before reconsidering Core.
-3. Address remaining documentation or build hygiene in separate focused tasks.
+2. Address remaining documentation or build hygiene in separate focused tasks.
 
 ## Verified Starter E2E boundary
 

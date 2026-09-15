@@ -52,7 +52,7 @@ Spring AI ChatClient
 | `ai-context-spring-ai` | Spring AI Advisor 桥接 |
 | `ai-context-spring-boot-autoconfigure` | Spring Boot 默认 Bean 装配 |
 | `ai-context-spring-boot-starter` | 给使用者提供单一依赖入口，并已验证 `ChatClient.Builder` 消费者链路 |
-| `examples` | 计划中的消费者示例；当前目录仍是占位内容 |
+| `examples` | 消费者示例；Quickstart 已可离线运行，Advanced 仍为占位内容 |
 
 ## 📦 Core Package 结构
 

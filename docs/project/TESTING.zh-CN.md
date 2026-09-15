@@ -10,7 +10,8 @@
 | `ai-context-spring-ai` | 18 | ✅ |
 | `ai-context-spring-boot-autoconfigure` | 10 | ✅ |
 | `ai-context-spring-boot-starter` | 1 | ✅ |
-| 合计 | 118 | ✅ |
+| `examples/quickstart` | 1 | ✅ |
+| 合计 | 119 | ✅ |
 
 ## ▶️ 本地测试
 
@@ -40,6 +41,10 @@ git status
 Starter E2E 会检查自动配置的 `ChatClient.Builder`、自动注册的 ACO
 Advisor、原 system message，以及追加到最终 Prompt 的业务上下文。测试不需要
 API Key，也不会访问模型网络服务。
+
+Quickstart 测试会启动真正可运行的消费者应用，验证注入的
+`ChatClient.Builder` 触发一次 Source 加载和一次离线模型调用，并检查捕获的
+Prompt 保留 system、user message 且只包含一个增强后的业务上下文信封。
 
 ## ⚠️ 已知非阻塞警告
 

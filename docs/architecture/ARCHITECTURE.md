@@ -46,7 +46,7 @@ Spring AI ChatClient
 | `ai-context-spring-ai` | Spring AI Advisor bridge |
 | `ai-context-spring-boot-autoconfigure` | Spring Boot default wiring |
 | `ai-context-spring-boot-starter` | Consumer dependency aggregation and verified `ChatClient.Builder` path |
-| `examples` | Planned consumer examples; the current directories are placeholders |
+| `examples` | Consumer examples; Quickstart is runnable offline, while Advanced remains a placeholder |
 
 ## 📦 Core Package Structure
 

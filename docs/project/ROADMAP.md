@@ -9,12 +9,12 @@
 | Spring Boot AutoConfiguration baseline | ✅ Complete |
 | Starter fake-model E2E | ✅ Complete |
 | Core package organization | ✅ Complete |
-| Runnable Quickstart | 🟡 Next |
-| Real-application dogfooding | 🟡 Planned |
+| Runnable offline Quickstart | ✅ Complete |
+| Real-application dogfooding | 🟡 Next |
 | Minimal YAML consumer experience | 🟡 Planned |
 | Build / README hygiene | 🟡 Planned |
 | First alpha | ⏳ After consumer validation |
 
-The next milestone should turn the verified consumer contract into a runnable
-Quickstart, then validate it in a real application before adding new Core
-abstractions. Roadmap entries are direction, not implementation authorization.
+The next milestone should validate the Starter in a real application and record
+concrete consumer friction before adding new Core abstractions. Roadmap entries
+are direction, not implementation authorization.

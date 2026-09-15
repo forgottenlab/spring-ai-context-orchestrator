@@ -83,5 +83,17 @@ Advisor
 整条链路可工作，并验证原 system message 得以保留、
 `<business-context>` 与 `ContextSource` 事实进入最终 Prompt。
 
-`examples/quickstart` 当前仍是占位目录；下一阶段会把已验证契约整理为
-真正可运行的示例。
+## ▶️ 运行离线 Quickstart
+
+[Quickstart](../../examples/quickstart/README.md) 是一个可执行的非 Web
+Spring Boot 消费者应用。在仓库根目录运行：
+
+```powershell
+mvn -pl examples/quickstart -am clean package
+java -jar .\examples\quickstart\target\ai-context-quickstart-0.1.0-SNAPSHOT.jar
+```
+
+示例定义自己的库存 `ContextSource`，注入自动配置的
+`ChatClient.Builder`，并使用内存 `ChatModel` 打印实际增强后的 system
+message。Maven 解析构建依赖时可能需要网络，但打包后的应用不需要 API Key、
+模型供应商或运行时网络连接。

@@ -53,6 +53,7 @@
         <module>ai-context-spring-ai</module>
         <module>ai-context-spring-boot-autoconfigure</module>
         <module>ai-context-spring-boot-starter</module>
+        <module>examples/quickstart</module>
     </modules>
 
     <dependencyManagement>

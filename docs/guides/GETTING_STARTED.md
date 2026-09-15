@@ -35,5 +35,18 @@ This consumer path is verified by `StarterConsumerE2ETest`: a fake
 `ChatModel` receives the final Prompt, including the preserved system message
 and appended `<business-context>`, without an API key or network call.
 
-The `examples/quickstart` directory is still a placeholder. Turning this
-verified contract into a runnable example is the next milestone.
+## ▶️ Run the Offline Quickstart
+
+The [Quickstart](../../examples/quickstart/README.md) is an executable non-web
+Spring Boot consumer. From the repository root:
+
+```powershell
+mvn -pl examples/quickstart -am clean package
+java -jar .\examples\quickstart\target\ai-context-quickstart-0.1.0-SNAPSHOT.jar
+```
+
+It defines its own inventory `ContextSource`, injects the auto-configured
+`ChatClient.Builder`, and uses an in-memory `ChatModel` to print the actual
+enriched system message. Maven may require network access to resolve build
+dependencies, but the packaged application needs no API key, provider, or
+runtime network connection.

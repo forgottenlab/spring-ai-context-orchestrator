@@ -85,6 +85,12 @@ the auto-configured `ChatClient.Builder`, applies ACO's Advisor automatically,
 preserves the existing system message, and appends the consumer source's facts
 inside `<business-context>` without an API key or external model call.
 
+The runnable offline Quickstart exercises the same contract as a non-web Spring
+Boot consumer. Its only direct production ACO dependency is the Starter; it
+contributes an application `ContextSource`, uses an in-memory `ChatModel`, and
+prints the final enriched system message without provider credentials or
+runtime network access.
+
 Persistence, cache, vector-store, memory, authorization, and model-provider
 infrastructure remain application or provider responsibilities.
 
