@@ -1,93 +1,267 @@
-# AI Context Orchestrator
+# 🧠 AI Context Orchestrator
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-AI Context Orchestrator is a thin, declarative business-context orchestration layer for Spring AI applications.
+> A declarative business-context orchestration layer for Spring AI.
+>
+> Let applications declare only the business context AI needs, while the framework handles planning, loading, conflict resolution, budget selection, and final injection.
 
-## Goal
+---
 
-Let application developers describe **what the AI is allowed and expected to know**, while the framework handles how that context is loaded, prioritized, governed, budgeted, and assembled.
+## ✨ Vision
 
-The project deliberately does **not** replace Spring AI, Spring Data, MyBatis, Redis clients, vector-store implementations, or model SDKs.
+In real-world applications, AI responses often depend on more than conversation history. They may also need:
 
-## Design principles
+- current user profiles;
+- database facts such as products, orders, and inventory;
+- session state stored in Redis;
+- vector retrieval results;
+- business rules and authorization context;
+- data provided by other internal services.
 
-1. Declarative first.
-2. Convention over configuration.
-3. Safe defaults.
-4. Progressive override is the long-term direction; the currently validated consumer surface is the Starter + Java `ContextSource` API, while YAML and annotation layers remain future work.
-5. Preserve context identity; do not flatten everything into one string too early.
-6. Business ground truth should be able to outrank stale or lower-authority context.
-7. Context budget is a first-class concern.
-8. Provider-neutral core; Spring AI is the primary integration layer.
-9. Spring AI Alibaba is an optional enhancement, not a hard dependency of the core.
-10. No automatic write-capable SQL from LLM output.
+If every AI endpoint manually queries and concatenates this context, the code quickly becomes repetitive, difficult to test, and difficult to extend.
 
-## Modules
+AI Context Orchestrator (ACO) extracts that responsibility into a dedicated context orchestration layer:
 
-- `ai-context-core`: provider-neutral context model and extension SPI.
-- `ai-context-spring-ai`: Spring AI bridge.
-- `ai-context-spring-boot-autoconfigure`: Boot auto-configuration and properties.
-- `ai-context-spring-boot-starter`: user-facing dependency aggregator with the
-  verified Spring AI `ChatClient.Builder` consumer path.
-- `examples/quickstart`: runnable offline consumer example using only the ACO
-  Starter as its direct production ACO dependency.
-- `examples/advanced-context`: placeholder for the planned extensible example.
+```text
+Application declares ContextSource
+        ↓
+ACO plans which context should load
+        ↓
+ContextSource instances execute concurrently
+        ↓
+Authority / Freshness resolve conflicts
+        ↓
+Priority / Budget select retained context
+        ↓
+Structured ContextAssembly is built
+        ↓
+Spring AI Advisor injects it into the model request
+```
 
-The Core module remains one Maven module, with shared contracts in
-`io.github.forgottenlab.aicontext.core` and pipeline-specific types organized
-under `planning`, `execution`, `resolution`, `budget`, and `assembly`.
+---
 
-## ✅ Current status
+## 🚀 Features
 
-The Starter consumer contract is covered by a fake-model Spring Boot E2E test.
-A normal consumer can depend on the Starter, contribute a `ContextSource`,
-inject the auto-configured `ChatClient.Builder`, and receive ACO business
-context in the final Prompt without an API key or external model call.
+| Capability | Status | Notes |
+|---|---|---|
+| Provider-neutral Core | ✅ Complete | Core does not depend on Spring AI |
+| ContextSource SPI | ✅ Complete | Application extension point for business context |
+| Planning | ✅ Complete | Decides LOAD / DEFER / SKIP |
+| Execution | ✅ Complete | Concurrent loading, timeout, and failure isolation |
+| Resolution | ✅ Complete | Authority / Freshness conflict handling |
+| Budget | ✅ Complete | Required protection + Priority-based selection |
+| Structured Assembly | ✅ Complete | Keeps context structured until the model boundary |
+| Spring AI Advisor Bridge | ✅ Complete | Appends business context automatically |
+| Spring Boot AutoConfiguration | ✅ Complete | Builds the default runtime graph |
+| Spring Boot Starter | ✅ Consumer path verified | Fake ChatModel E2E covers auto-configuration and final Prompt |
+| Runnable Quickstart | ✅ Complete | Offline executable example covers the real Starter consumer path |
 
-The [runnable offline Quickstart](examples/quickstart/README.md) demonstrates the
-same consumer path as an executable non-web Spring Boot application. Its local
-`ChatModel` captures the final Prompt, so runtime needs no API key, provider, or
-network access.
+---
 
-## Baseline
+## 🧱 Architecture
 
-- Java 17
-- Spring Boot 3.5.16
-- Spring AI 1.1.8
-- Maven
+Core pipeline:
 
-Spring AI Alibaba compatibility may be evaluated later behind a dedicated adapter/compatibility layer if real consumer demand justifies it; it is not a current Core dependency or committed milestone.
+```text
+ContextRequest
+   ↓
+ContextPlanner
+   ↓
+ContextExecutor
+   ↓
+ContextResolver
+   ↓
+ContextBudgeter
+   ↓
+ContextAssembler
+   ↓
+ContextOrchestrationAdvisor
+   ↓
+Spring AI ChatClient
+```
+
+`ai-context-core` remains a single Maven module. Cross-stage contracts stay in
+`io.github.forgottenlab.aicontext.core`, while stage-specific types live in the
+`planning`, `execution`, `resolution`, `budget`, and `assembly` packages.
+
+Detailed documentation:
+
+- [Architecture](docs/architecture/ARCHITECTURE.md)
+- [Class Map](docs/architecture/CLASS_MAP.md)
+
+---
+
+## 📦 Usage
+
+Current target consumer experience:
+
+```xml
+<dependency>
+    <groupId>io.github.forgottenlab.aicontext</groupId>
+    <artifactId>ai-context-spring-boot-starter</artifactId>
+    <version>${ai-context.version}</version>
+</dependency>
+```
+
+Applications only need to provide their own `ContextSource`:
+
+```java
+@Component
+class ProductContextSource implements ContextSource {
+
+    @Override
+    public String id() {
+        return "product";
+    }
+
+    @Override
+    public CompletableFuture<ContextContribution> load(ContextRequest request) {
+        // Load facts from an application Service / Repository and return ContextItem values.
+        ...
+    }
+}
+```
+
+Then continue using Spring AI normally:
+
+```java
+@Service
+class ProductAssistant {
+
+    private final ChatClient chatClient;
+
+    ProductAssistant(ChatClient.Builder builder) {
+        this.chatClient = builder.build();
+    }
+
+    String ask(String question) {
+        return chatClient.prompt()
+                .user(question)
+                .call()
+                .content();
+    }
+}
+```
+
+ACO does not require application code to manually invoke Planner, Executor, Resolver, Budgeter, or Assembler.
+
+---
+
+## ⚙️ Configuration
+
+Current public budget configuration:
+
+```yaml
+forgottenlab:
+  ai:
+    context:
+      enabled: true
+      budget:
+        max-context-tokens: 12000
+```
+
+Note:
+
+`max-context-tokens` is the current public configuration name, while the default
+`ContextCostEstimator` is still a deterministic, tokenizer-neutral estimator.
+
+Current default semantics:
+
+```text
+1 rendered Unicode code point = 1 cost unit
+```
+
+Applications that need exact model token accounting can replace `ContextCostEstimator`.
+
+---
 
 ## 🧪 Testing
 
-| Module | Tests |
-|---|---:|
-| Core | 89 |
-| Spring AI | 18 |
-| Spring Boot AutoConfigure | 10 |
-| Spring Boot Starter | 1 |
-| Quickstart | 1 |
-| Total | 119 |
+Current baseline:
 
-Run the complete local reactor with:
+| Module | Tests | Status |
+|---|---:|---|
+| Core | 89 | ✅ |
+| Spring AI | 18 | ✅ |
+| Spring Boot AutoConfigure | 10 | ✅ |
+| Spring Boot Starter | 1 | ✅ |
+| Quickstart | 1 | ✅ |
+| **Total** | **119** | **✅** |
+
+Run:
 
 ```powershell
 mvn test
 ```
 
-The next consumer-facing milestone is real-application dogfooding. Core remains
-frozen unless that usage exposes a concrete contract gap.
+Detailed documentation:
+
+- [Testing](docs/project/TESTING.md)
+
+---
 
 ## 📖 Documentation
 
-- [Architecture](docs/architecture/ARCHITECTURE.md) | [架构说明](docs/architecture/ARCHITECTURE.zh-CN.md)
-- [Class Map](docs/architecture/CLASS_MAP.md) | [类职责地图](docs/architecture/CLASS_MAP.zh-CN.md)
-- [Getting Started](docs/guides/GETTING_STARTED.md) | [快速开始](docs/guides/GETTING_STARTED.zh-CN.md)
-- [Testing](docs/project/TESTING.md) | [测试说明](docs/project/TESTING.zh-CN.md)
-- [Roadmap](docs/project/ROADMAP.md) | [路线图](docs/project/ROADMAP.zh-CN.md)
-- [Safety Notes](docs/project/SAFETY.md) | [安全说明](docs/project/SAFETY.zh-CN.md)
+| Document | English | 简体中文 |
+|---|---|---|
+| Architecture | [ARCHITECTURE.md](docs/architecture/ARCHITECTURE.md) | [ARCHITECTURE.zh-CN.md](docs/architecture/ARCHITECTURE.zh-CN.md) |
+| Class Map | [CLASS_MAP.md](docs/architecture/CLASS_MAP.md) | [CLASS_MAP.zh-CN.md](docs/architecture/CLASS_MAP.zh-CN.md) |
+| Getting Started | [GETTING_STARTED.md](docs/guides/GETTING_STARTED.md) | [GETTING_STARTED.zh-CN.md](docs/guides/GETTING_STARTED.zh-CN.md) |
+| Testing | [TESTING.md](docs/project/TESTING.md) | [TESTING.zh-CN.md](docs/project/TESTING.zh-CN.md) |
+| Roadmap | [ROADMAP.md](docs/project/ROADMAP.md) | [ROADMAP.zh-CN.md](docs/project/ROADMAP.zh-CN.md) |
+| Safety Notes | [SAFETY.md](docs/project/SAFETY.md) | [SAFETY.zh-CN.md](docs/project/SAFETY.zh-CN.md) |
 
-## License
+---
+
+## 🔐 Safety Notes
+
+ACO handles business context, so applications should pay particular attention to:
+
+- do not inject passwords, tokens, private keys, or other sensitive values into models without an explicit need;
+- `ContextSource` implementations must respect the application's existing authorization boundaries;
+- prefer explicit read-only database queries over unrestricted NL2SQL;
+- the `<business-context>` envelope reduces accidental instruction confusion but is not a complete prompt-injection defense;
+- do not log raw sensitive business context by default.
+
+Detailed documentation:
+
+- [Safety Notes](docs/project/SAFETY.md)
+
+---
+
+## 🗺️ Roadmap
+
+The real Starter consumer experience has already been verified by a Fake ChatModel E2E:
+
+```text
+Starter dependency
+    ↓
+ContextSource Bean
+    ↓
+AutoConfiguration
+    ↓
+ChatClient.Builder
+    ↓
+Fake ChatModel
+    ↓
+Final Prompt contains <business-context>
+```
+
+The [Runnable Offline Quickstart](examples/quickstart/README.md) implements the
+same path as a non-web Spring Boot application. It uses a local `ChatModel` to
+capture the final Prompt and requires no API key, model provider, or runtime
+network access.
+
+The next stage is real-application dogfooding. Core remains frozen unless real
+consumer usage exposes a concrete contract gap.
+
+Detailed roadmap:
+
+- [Roadmap](docs/project/ROADMAP.md)
+
+---
+
+## 📜 License
 
 This project is licensed under the [Apache License 2.0](LICENSE).
