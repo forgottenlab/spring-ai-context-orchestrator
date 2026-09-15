@@ -2,8 +2,6 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-> Working name. The public project name and artifact coordinates can be renamed before the first release.
-
 AI Context Orchestrator is a thin, declarative business-context orchestration layer for Spring AI applications.
 
 ## Goal
@@ -17,7 +15,7 @@ The project deliberately does **not** replace Spring AI, Spring Data, MyBatis, R
 1. Declarative first.
 2. Convention over configuration.
 3. Safe defaults.
-4. Progressive override: YAML -> annotations -> Java API -> SPI.
+4. Progressive override is the long-term direction; the currently validated consumer surface is the Starter + Java `ContextSource` API, while YAML and annotation layers remain future work.
 5. Preserve context identity; do not flatten everything into one string too early.
 6. Business ground truth should be able to outrank stale or lower-authority context.
 7. Context budget is a first-class concern.
@@ -59,7 +57,7 @@ network access.
 - Spring AI 1.1.8
 - Maven
 
-Spring AI Alibaba support will be introduced behind a dedicated adapter/compatibility layer rather than forcing its Spring AI version onto the core dependency graph.
+Spring AI Alibaba compatibility may be evaluated later behind a dedicated adapter/compatibility layer if real consumer demand justifies it; it is not a current Core dependency or committed milestone.
 
 ## 🧪 Testing
 

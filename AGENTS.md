@@ -199,15 +199,18 @@ When proposing a Core change, explain:
 
 Use `.ai/NEXT.md` as the current milestone source of truth.
 
-Unless `.ai/NEXT.md` says otherwise, prefer this order:
+The current validated consumer baseline already includes Starter E2E and the
+runnable offline Quickstart. Unless `.ai/NEXT.md` says otherwise, prefer this
+order:
 
-1. repository readability and documentation;
-2. high-value public API comments;
-3. Starter consumer E2E;
-4. runnable Quickstart;
-5. minimal consumer configuration;
-6. build/release hygiene;
-7. only then reconsider deeper Core changes.
+1. dogfood the Starter in a real application;
+2. record concrete consumer friction;
+3. fix only demonstrated contract gaps;
+4. keep Core frozen by default;
+5. handle documentation and build hygiene in separate focused tasks.
+
+Do not add new Core abstractions, adapters, annotation systems, or configuration
+layers without concrete consumer evidence.
 
 Do not silently move to the next milestone after completing the current one.
 
