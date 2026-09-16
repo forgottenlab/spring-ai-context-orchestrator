@@ -59,3 +59,22 @@ budget usage
 ```
 
 而不是原始敏感内容。
+
+## 🛑 权威业务事实与 Fail-Closed 请求
+
+`ContextPriority.REQUIRED` 表示已经完成 Resolution 的候选项不能被 Budget
+阶段静默丢弃。它不表示对应 `ContextSource` 必须执行成功。
+`ContextExecutor` 会有意把 Source 错误和超时隔离到
+`ContextExecutionReport`，Advisor 则继续处理成功的 contributions。
+
+对于业务关键的权威事实，fail-closed 规则属于应用 Service 边界。应用必须在
+调用 `ChatClient` 之前加载、授权并校验所需业务实体。查询失败或超时、实体未
+找到、授权失败时，都不得调用模型。
+
+```text
+权威业务校验成功 -> 可以调用 ChatClient
+权威业务校验失败 -> 禁止调用模型
+```
+
+ACO 继续为可选和增强上下文提供通用失败隔离，不会把所有
+`ContextSource` 失败全局改成 fail-closed。

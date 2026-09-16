@@ -244,10 +244,11 @@ public final class ContextOrchestrationAdvisor
     }
 
     /**
-     * Spring AI 1.1.x Prompt.augmentSystemMessage(String) replaces the existing
-     * system-message text. The function overload is therefore used by this
-     * advisor so user/application instructions are preserved and business
-     * context is appended explicitly.
+     * In the verified Spring AI 1.0.0 and 1.1.8 anchors,
+     * Prompt.augmentSystemMessage(String) replaces the existing system-message
+     * text. The function overload is therefore used by this advisor so
+     * user/application instructions are preserved and business context is
+     * appended explicitly.
      */
     private static String mergeSystemText(
             String existingSystemText,

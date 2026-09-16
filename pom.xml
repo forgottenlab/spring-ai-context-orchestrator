@@ -18,7 +18,7 @@
 
     <name>AI Context Orchestrator</name>
     <description>Declarative business-context orchestration for Spring AI applications.</description>
-    <url/>
+    <url>https://github.com/forgottenlab/spring-ai-context-orchestrator</url>
 
     <licenses>
         <license>
@@ -35,12 +35,11 @@
         </developer>
     </developers>
 
-    <!-- Override inherited Spring Boot SCM identity until a canonical remote exists. -->
     <scm>
-        <connection/>
-        <developerConnection/>
-        <url/>
-        <tag/>
+        <connection>scm:git:https://github.com/forgottenlab/spring-ai-context-orchestrator.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/forgottenlab/spring-ai-context-orchestrator.git</developerConnection>
+        <url>https://github.com/forgottenlab/spring-ai-context-orchestrator</url>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>

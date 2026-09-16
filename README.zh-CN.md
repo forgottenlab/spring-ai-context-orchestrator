@@ -55,6 +55,7 @@ Spring AI Advisor 自动注入模型请求
 | Spring Boot AutoConfiguration | ✅ 已完成 | 自动构建默认运行图 |
 | Spring Boot Starter | ✅ 消费者链路已验证 | Fake ChatModel E2E 已覆盖自动装配与最终 Prompt |
 | Runnable Quickstart | ✅ 已完成 | 离线可执行示例覆盖真实 Starter 消费者链路 |
+| Spring AI 兼容性 | ✅ 已验证 | 最低 1.0.0；当前默认 1.1.8 |
 
 ---
 
@@ -193,6 +194,10 @@ forgottenlab:
 mvn test
 ```
 
+独立的外部消费者 fixture 已验证 Spring AI `1.0.0` 与 `1.1.8`。它有意不加入
+reactor，因此其测试不计入 119 项总数。GitHub Actions 会运行 reactor、打包并
+执行离线 Quickstart，同时检查两个兼容性锚点。
+
 详细说明：
 
 - [测试说明](docs/project/TESTING.zh-CN.md)
@@ -218,6 +223,8 @@ ACO 会接触业务上下文，因此使用时应特别注意：
 
 - 不要把密码、Token、私钥等敏感数据无条件注入模型；
 - `ContextSource` 应遵守应用自身的权限边界；
+- `ContextPriority.REQUIRED` 只保护已完成 Resolution 的上下文不被预算丢弃，不保证 Source 加载成功；
+- 对必须 fail-closed 的关键权威事实，应在调用 `ChatClient` 前由应用完成加载与校验；
 - 数据库访问优先只读，并尽量使用明确查询而不是开放式 NL2SQL；
 - Prompt 中的 `<business-context>` 只能降低误把数据当指令的风险，不能视为完整 Prompt Injection 防护；
 - 日志中不要记录原始敏感上下文。

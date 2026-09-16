@@ -35,6 +35,18 @@ This consumer path is verified by `StarterConsumerE2ETest`: a fake
 `ChatModel` receives the final Prompt, including the preserved system message
 and appended `<business-context>`, without an API key or network call.
 
+## 🛡️ Validate Authoritative Ground Truth First
+
+`ContextPriority.REQUIRED` is a budget-retention rule for context that has
+already loaded and passed resolution. It does not require a `ContextSource` to
+execute successfully. ACO intentionally isolates individual source errors and
+timeouts so optional enrichment can continue.
+
+When a request is unsafe without an authoritative fact, the application must
+load, authorize, and validate that fact before calling `ChatClient`. A query
+error, timeout, not-found result, or authorization failure must prevent the
+model invocation at that application service boundary.
+
 ## ▶️ Run the Offline Quickstart
 
 The [Quickstart](../../examples/quickstart/README.md) is an executable non-web
