@@ -83,6 +83,16 @@ Advisor
 整条链路可工作，并验证原 system message 得以保留、
 `<business-context>` 与 `ContextSource` 事实进入最终 Prompt。
 
+## 🛡️ 先校验权威业务事实
+
+`ContextPriority.REQUIRED` 是针对已经加载并通过 Resolution 的上下文所定义
+的预算保留规则，不表示 `ContextSource` 必须执行成功。ACO 会有意隔离单个
+Source 的错误与超时，使可选增强上下文仍可继续处理。
+
+如果缺少某项权威事实时不能安全处理请求，应用必须在调用 `ChatClient` 前
+完成该事实的加载、授权和校验。查询错误、超时、未找到结果或授权失败都必须
+在应用 Service 边界阻止模型调用。
+
 ## ▶️ 运行离线 Quickstart
 
 [Quickstart](../../examples/quickstart/README.md) 是一个可执行的非 Web

@@ -56,6 +56,7 @@ Spring AI Advisor injects it into the model request
 | Spring Boot AutoConfiguration | ✅ Complete | Builds the default runtime graph |
 | Spring Boot Starter | ✅ Consumer path verified | Fake ChatModel E2E covers auto-configuration and final Prompt |
 | Runnable Quickstart | ✅ Complete | Offline executable example covers the real Starter consumer path |
+| Spring AI compatibility | ✅ Verified | Minimum 1.0.0; current default 1.1.8 |
 
 ---
 
@@ -195,6 +196,11 @@ Run:
 mvn test
 ```
 
+The standalone external-consumer fixture verifies Spring AI `1.0.0` and
+`1.1.8`. It is intentionally outside the reactor, so its test is not included
+in the 119-test total. GitHub Actions runs the reactor, packages and executes
+the offline Quickstart, and checks both compatibility anchors.
+
 Detailed documentation:
 
 - [Testing](docs/project/TESTING.md)
@@ -220,6 +226,8 @@ ACO handles business context, so applications should pay particular attention to
 
 - do not inject passwords, tokens, private keys, or other sensitive values into models without an explicit need;
 - `ContextSource` implementations must respect the application's existing authorization boundaries;
+- `ContextPriority.REQUIRED` protects resolved context from budget removal; it does not require a source load to succeed;
+- validate business-critical authoritative ground truth before invoking `ChatClient` when the request must fail closed;
 - prefer explicit read-only database queries over unrestricted NL2SQL;
 - the `<business-context>` envelope reduces accidental instruction confusion but is not a complete prompt-injection defense;
 - do not log raw sensitive business context by default.

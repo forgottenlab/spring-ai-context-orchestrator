@@ -12,6 +12,7 @@
 | Starter Fake ChatModel E2E | ✅ 完成 | 已验证真正的单一 Starter 依赖使用体验 |
 | Core Package Organization | ✅ 完成 | 单一 Core module 按 pipeline stage 分类 |
 | Runnable Offline Quickstart | ✅ 完成 | 离线可执行示例覆盖真实 Starter 消费者链路 |
+| Integration Readiness Gates | ✅ 完成 | 兼容性锚点、fail-closed 边界、CI 与仓库 metadata 已建立 |
 | 真实应用 Dogfooding | 🟡 下一步 | 在实际消费者中验证使用体验 |
 | Minimal YAML | 🟡 计划中 | 只保留真正需要配置的项目 |
 | Build / README Hygiene | 🟡 计划中 | 清理警告、完善发布说明 |
@@ -19,8 +20,9 @@
 
 ## 🎯 下一阶段原则
 
-下一步不继续为了“看起来高级”而增加 Core 抽象，而是在真实应用中
-dogfood Starter，记录具体消费者摩擦后再判断是否需要调整。
+兼容性锚点、fail-closed 职责边界、CI 和仓库 metadata 已经建立。下一步不
+继续为了“看起来高级”而增加 Core 抽象，而是在真实应用中 dogfood Starter，
+记录具体消费者摩擦后再判断是否需要调整。
 
 当前测试已经证明：
 

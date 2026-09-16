@@ -23,7 +23,14 @@ The foundation and consumer wiring baseline are established:
   `budget`, and `assembly`;
 - public Markdown reflects the verified Starter consumer contract, the
   119-test reactor baseline, the stage package structure, and the runnable
-  offline Quickstart.
+  offline Quickstart;
+- the external consumer fixture is GREEN against Spring AI 1.0.0 and 1.1.8,
+  establishing 1.0.0 as the minimum and retaining 1.1.8 as the default;
+- GitHub Actions covers reactor tests, packaging, the executable offline
+  Quickstart, and both compatibility anchors;
+- the authoritative ground-truth fail-closed boundary is documented as an
+  application responsibility before `ChatClient` invocation, without changing
+  Core failure-isolation or `REQUIRED` budget semantics.
 
 The Starter consumer E2E is verified GREEN. A consumer obtains the
 auto-configured `ChatClient.Builder` through the Starter, ACO's Advisor is
@@ -42,11 +49,16 @@ access.
 `mvn clean test` is GREEN with Core 89, Spring AI 18, AutoConfiguration 10,
 Starter 1, and Quickstart 1 test (119 total).
 
+The integration-readiness gates are GREEN. The standalone external-consumer
+fixture adds one test per selected Spring AI anchor but remains outside the
+reactor and does not change the 119-test baseline.
+
 ## Ordered next tasks
 
 Complete one task at a time and stop after each task:
 
-1. Dogfood the Starter in a real application and record concrete consumer
+1. Dogfood the Starter in the Lingxi real application, enforcing authoritative
+   Product validation before `ChatClient`, and record concrete consumer
    friction before reconsidering Core.
 2. Address remaining documentation or build hygiene in separate focused tasks.
 

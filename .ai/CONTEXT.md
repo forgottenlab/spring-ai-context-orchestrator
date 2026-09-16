@@ -91,6 +91,36 @@ contributes an application `ContextSource`, uses an in-memory `ChatModel`, and
 prints the final enriched system message without provider credentials or
 runtime network access.
 
+## Compatibility baseline
+
+- Java 17 and Spring Boot 3.5.16 are the current build baseline.
+- Spring AI 1.1.8 remains the default dependency baseline.
+- Spring AI 1.0.0 is the verified minimum supported version.
+- The standalone `compatibility/spring-ai-consumer` fixture validates the real
+  external Starter consumer path against Spring AI 1.0.0 and 1.1.8. It remains
+  outside the root reactor so compatibility tests do not change the 119-test
+  reactor baseline.
+
+## Authoritative ground-truth boundary
+
+`ContextPriority.REQUIRED` protects already-resolved context from budget
+removal; it does not require a `ContextSource` to execute successfully. Core
+continues to isolate per-source errors and timeouts in
+`ContextExecutionReport`, and the Advisor proceeds with successful
+contributions.
+
+When an application request requires authoritative business ground truth to be
+safe, the application service must load, authorize, and validate that state
+before invoking `ChatClient`. Query failure, timeout, not-found, or
+authorization failure must prevent model invocation at that consumer boundary.
+
+## Integration validation
+
+GitHub Actions runs the default reactor test and package gates, executes the
+offline Quickstart, and tests the external consumer fixture against both
+verified Spring AI anchors. Project and SCM metadata point to the canonical
+ForgottenLab GitHub repository.
+
 Persistence, cache, vector-store, memory, authorization, and model-provider
 infrastructure remain application or provider responsibilities.
 
